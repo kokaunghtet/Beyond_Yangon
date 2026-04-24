@@ -1,0 +1,30 @@
+1. Positioning
+2. Box model
+3. Typography
+4. Visual styles
+5. Effects / animation
+6. Transitions
+
+# Example
+.btn {
+  /* Position */
+  position: relative;
+
+  /* Box model */
+  width: 100%;
+  padding: 15px;
+
+  /* Typography */
+  font-size: 1rem;
+
+  /* Visual */
+  background: var(--accent);
+  border-radius: 22px;
+  color: white;
+
+  /* Effects */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+
+  /* Animation */
+  transition: all 0.15s ease;
+}
