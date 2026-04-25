@@ -56,10 +56,20 @@ async function loadNavbar() {
   setActiveNavbarLink(placeholder);
 }
 
+// --- fetching & injection of Footer Components ---------
+async function loadFooter() {
+  const placeholder = document.getElementById("footer-placeholder");
+  const response = await fetch("/components/footer.html");
+  const html = await response.text();
+  placeholder.innerHTML = html;
+}
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     loadNavbar();
+    loadFooter();
   });
 } else {
   loadNavbar();
+  loadFooter();
 }
