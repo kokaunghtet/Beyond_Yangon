@@ -73,3 +73,31 @@ if (document.readyState === "loading") {
   loadNavbar();
   loadFooter();
 }
+
+// --- observer for text slideIn animation ------
+(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        } else {
+          entry.target.classList.remove("show");
+        }
+      });
+    },
+    {
+      threshold: 0.3,
+    },
+  );
+
+  eraTexts = document.querySelectorAll(".era-text");
+  eraTexts.forEach((e) => {
+    observer.observe(e);
+  });
+
+  facts = document.querySelectorAll(".fact");
+  facts.forEach((f) => {
+    observer.observe(f);
+  });
+})();
