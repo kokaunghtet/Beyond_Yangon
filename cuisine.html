@@ -9,6 +9,7 @@
   <link rel="icon" href="./assets/icons/myanmar.svg" type="image/svg+xml">
 
   <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/cuisine.css">
 </head>
 
 <body>
@@ -16,8 +17,99 @@
     <div id="navbar-placeholder"></div>
   </header>
 
+  <div class="divider-block" style="height: 100px;"></div>
+
   <main>
-    Cuisine
+    <section class="hero">
+      <div class="overlay">
+        <div class="hero-content">
+          <h1>Discover Burmese Flavors</h1>
+          <p>Explore the rich taste of Myanmar’s most loved traditional dishes</p>
+          <button>Explore Menu</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="upfoods">
+      <h2>Most Famous Burmese Dishes</h2>
+
+      <div class="upfood-grid">
+        <div class="upfood-card">
+          <img src="foodimage/mohinga.jpg" alt="Mohinga">
+          <h3>Mohinga</h3>
+          <p>Traditional fish noodle soup, Myanmar’s national dish</p>
+        </div>
+
+        <div class="upfood-card">
+          <img src="foodimage/lahpet(mdy).jpg" alt="Laphet Thoke">
+          <h3>Laphet Thoke</h3>
+          <p>Fermented tea leaf salad with crunchy toppings</p>
+        </div>
+
+        <div class="upfood-card">
+          <img src="foodimage/ohnonoodle.jpg" alt="Ohn No Khao Swe">
+          <h3>Ohn No Khao Swe</h3>
+          <p>Creamy coconut chicken noodle soup</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="app" id="app">
+
+      <!-- TITLE -->
+
+      <h1 class="heading">Others Famous Foods</h1>
+
+      <!-- LEFT: FOOD CIRCLE -->
+
+      <div class="circle-wrap" id="circleWrap">
+        <!-- CENTER PLATE -->
+        <div class="center-plate" id="centerPlate"></div>
+
+        <!-- PLATE BACKGROUND -->
+        <div class="circle"></div>
+
+        <!-- FOOD ITEMS -->
+        <div class="foods" id="foods"></div>
+        ```
+      </div>
+
+      <!-- RIGHT: NOTEBOOK -->
+
+      <div class="notebook" id="notebook">
+
+        <div class="spiral"></div>
+
+        <div class="page-stack">
+          <div class="paper layer layer-1"></div>
+          <div class="paper layer layer-2"></div>
+
+          <!-- MAIN PAGE -->
+          <div class="page" id="page">
+            <div class="paper main">
+
+              <h2 id="foodTitle"></h2>
+
+              <div class="note-row">
+                <span class="label">Description:</span>
+                <span id="desc" class="value"></span>
+              </div>
+
+              <div class="note-row">
+                <span class="label">Ingredients:</span>
+                <span id="ingredients" class="value"></span>
+              </div>
+
+              <div class="note-row">
+                <span class="label">How to make:</span>
+                <span id="howTo" class="value"></span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
   </main>
 
   <footer>
@@ -25,6 +117,7 @@
   </footer>
 
   <script src="./js/main.js"></script>
+  <script src="./js/cuisine.js"></script>
 </body>
 
 </html>

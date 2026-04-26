@@ -1,5 +1,5 @@
 @import url("./components.css");
-@import url("./layout.css");
+@import url("./map.css");
 
 :root {
    --bg: #FAF3E0;
@@ -43,10 +43,6 @@ body {
 
    background: var(--bg);
    color: var(--text)
-}
-
-main {
-   padding: 1rem 2.5rem;
 }
 
 .hero {
@@ -185,11 +181,24 @@ main {
    background: var(--gold)
 }
 
-.era-content p {
+.era-text {
    font-size: 0.95rem;
    line-height: 1.85;
 
-   color: var(--text)
+   color: var(--text);
+
+   opacity: 0;
+   transform: translateX(30px);
+   transition: all .6s ease;
+}
+
+.era-text.text-reverse {
+   transform: translateX(-30px);
+}
+
+.era-text.show {
+   opacity: 1;
+   transform: translate(0);
 }
 
 .key-facts {
@@ -222,6 +231,35 @@ main {
    align-items: flex-start;
 
    color: var(--text);
+
+   opacity: 0;
+   transform: translateX(30px);
+   transition: all .6s ease;
+}
+
+.fact:nth-child(1) {
+   transition-delay: 0.2s;
+}
+
+.fact:nth-child(2) {
+   transition-delay: 0.4s;
+}
+
+.fact:nth-child(3) {
+   transition-delay: 0.6s;
+}
+
+.fact:nth-child(4) {
+   transition-delay: 0.8s;
+}
+
+.fact.fact-reverse {
+   transform: translateX(-30px);
+}
+
+.fact.show {
+   opacity: 1;
+   transform: translate(0);
 }
 
 .fact::before {

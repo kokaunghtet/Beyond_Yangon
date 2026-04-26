@@ -1,0 +1,96 @@
+/* ─── Page Layout ───────────────────────────────────────────── */
+.card-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
+  justify-content: center; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+
+  background: var(--bg);
+}
+
+/* ─── Card ─────────────────────────────────────────────────── */
+.user-card {
+  width: 100%;
+  height: 420px;
+  /* fixed size */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: var(--surface);
+  border: 1px solid rgba(196, 154, 42, 0.4);
+  border-radius: 14px;
+
+  padding: 1.5rem;
+
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-medium),
+    box-shadow var(--transition-medium);
+
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* top gold accent */
+.user-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gold);
+}
+
+/* hover effect */
+.user-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ─── Image ────────────────────────────────────────────────── */
+.user-card img {
+  width: 100px;
+  height: 100px;
+
+  object-fit: cover;
+  border-radius: 50%;
+
+  border: 3px solid var(--gold);
+
+  margin: 0 auto 1rem;
+}
+
+/* ─── Name ─────────────────────────────────────────────────── */
+.user-name {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--heading);
+  margin-bottom: 0.5rem;
+}
+
+/* ─── Skills ───────────────────────────────────────────────── */
+.user-skills {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.5;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+/* optional spacing tweak */
+.user-skills br {
+  display: block;
+  margin-bottom: 0.2rem;
+}

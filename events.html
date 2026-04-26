@@ -9,6 +9,7 @@
   <link rel="icon" href="./assets/icons/myanmar.svg" type="image/svg+xml">
 
   <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/event.css">
 </head>
 
 <body>
@@ -16,8 +17,316 @@
     <div id="navbar-placeholder"></div>
   </header>
 
+  <div class="divider-block" style="height: 100px;"></div>
+
   <main>
-    Events
+    <section class="festival-spiral-section" aria-labelledby="festival-spiral-heading">
+      <div class="festival-spiral-scene" data-spiral-scene>
+        <div class="festival-spiral-sticky">
+          <aside class="festival-history-sidebar">
+            <h2 id="summary-title"></h2>
+            <div id="summary-text-container">
+              <p></p>
+            </div>
+            <button id="summary-see-more-btn" class="see-more-btn" style="display: none">
+              See More
+            </button>
+          </aside>
+
+          <div class="festival-ambient festival-ambient-left" aria-hidden="true"></div>
+          <div class="festival-ambient festival-ambient-right" aria-hidden="true"></div>
+          <div class="festival-grid-glow" aria-hidden="true"></div>
+
+          <div class="festival-spiral-track" aria-hidden="true">
+            <div class="festival-spiral-ring festival-spiral-ring-outer"></div>
+            <div class="festival-spiral-ring festival-spiral-ring-inner"></div>
+            <div class="festival-spiral-core"></div>
+          </div>
+
+          <div class="festival-cards">
+            <article class="festival-card" data-spiral-card data-detail-title="တန်ခူး"
+              data-detail-subtitle="မြန်မာနှစ်သစ်ကူးပွဲတော်၊ ရေသွန်းပြီး အပြစ်ရှင်းလင်းခြင်းကို ကိုယ်စားပြု။"
+              data-detail-season="နွေရာသီ" data-detail-month="April"
+              data-detail-description="ဟိန္ဒူယဉ်ကျေးမှုနဲ့ ဗုဒ္ဓဘာသာပေါင်းစပ်ပြီး ဖြစ်ပေါ်လာသည်။ သင်္ကြန်မင်းဆင်းသက်လာသည်ဟု ယုံကြည်ကြပြီး ရေသွန်းခြင်းသည် အညစ်အကြေးများကို သန့်စင်ခြင်းအဓိပ္ပာယ်ရှိသည်။ ယနေ့တွင် water festival ပုံစံ၊ entertainment ပိုများလာသည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="true">
+              <div class="festival-card-media">
+                <img src="./assets/icons/1.jpg" alt="Tagu Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">တန်ခူး</span>
+                  <span class="festival-card-season">April</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>တန်ခူး</h3>
+                <p>သင်္ကြန်၊ နှစ်သစ်ကူး၊ ရေကစားပွဲ</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="ကဆုန်"
+              data-detail-subtitle="ဗုဒ္ဓဘုရားနှင့်ဆက်စပ်သော အရေးကြီးနေ့၊ ညောင်ပင်ကို ရေလောင်းပူဇော်။"
+              data-detail-season="နွေရာသီ" data-detail-month="May"
+              data-detail-description="ဗုဒ္ဓဖွား၊ သိက္ခာတော်ရ၊ ပရိနိဗ္ဗာန်ဝင်နေ့တို့ တစ်နေ့တည်းဖြစ်သည်ဟု ယုံကြည်သည်။ ညောင်ပင်ကို ရေလောင်းခြင်းသည် ဗုဒ္ဓကို ဂုဏ်ပြုခြင်းဖြစ်ပြီး ကုသိုလ်ပြုမှုများ လုပ်ဆောင်ကြသည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/2.jpg" alt="Kason Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">ကဆုန်</span>
+                  <span class="festival-card-season">May</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>ကဆုန်</h3>
+                <p>ညောင်ရေသွန်းပွဲ၊ ဘုရားဖူးရာသီ</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="နယုန်"
+              data-detail-subtitle="ပညာရေးနှင့် ဆက်စပ်သောလ၊ စာသင်စာပြန်အရေးပါ။" data-detail-season="နွေမှမိုးပြောင်း"
+              data-detail-month="June"
+              data-detail-description="ရှေးက ဗုဒ္ဓဘာသာစာပေများကို သင်ယူ၊ ပြန်ဆိုခြင်းများ ပြုလုပ်ကြသည်။ ယနေ့တွင် စာမေးပွဲအတွက် ပြင်ဆင်ရာလဖြစ်လာသည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/3.jpg" alt="Nayon Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">နယုန်</span>
+                  <span class="festival-card-season">June</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>နယုန်</h3>
+                <p>စာတော်ပြန်၊ ပညာရေးနဲ့ ဓမ္မလှုပ်ရှားမှု</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="ဝါဆို"
+              data-detail-subtitle="သံဃာတော်များ ဝါဝင်ရာသီ စတင်။" data-detail-season="မိုးရာသီ" data-detail-month="July"
+              data-detail-description="သံဃာများ တစ်နေရာတွင် နေထိုင်၍ သီလထိန်းကြသည်။ လူများက သင်္ကန်း၊ ဆွမ်း အလှူပြုကြသည်။ ဗုဒ္ဓဘာသာတွင် အရေးကြီးသောကာလဖြစ်သည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/4.jpg" alt="Waso Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">ဝါဆို</span>
+                  <span class="festival-card-season">July</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>ဝါဆို</h3>
+                <p>ဝါကပ်စတင်ခြင်း၊ လှူဒါန်းရာသီ</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="ဝါခေါင်"
+              data-detail-subtitle="လယ်ယာလုပ်ငန်းများ ပြုလုပ်သည်။" data-detail-season="မိုးရာသီ"
+              data-detail-month="August"
+              data-detail-description="ဝါခေါင်လသည် မိုးရာသီအလယ်ကာလဖြစ်ပြီး လယ်ယာလုပ်ငန်းများ အလုပ်များသောလဖြစ်သည်။ စပါးစိုက်ပြီးသော လယ်များကို ပြုစုထိန်းသိမ်းရသည်။ မြက်ရှင်းခြင်း၊ ရေထိန်းခြင်းများ ပြုလုပ်ကြသည်။ ထို့ကြောင့် ဝါခေါင်လကို စိုက်ပျိုးရေးအရေးပါသောလဟု ဆိုနိုင်သည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/5.jpg" alt="Wagaung Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">ဝါခေါင်</span>
+                  <span class="festival-card-season">August</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>ဝါခေါင်</h3>
+                <p>နတ်ပွဲ၊ လူထုစည်ကားမှု၊ ပျော်ပွဲရွှင်ပွဲ</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="တော်သလင်း"
+              data-detail-subtitle="လှေလှော်ပြိုင်ပွဲများ ကျင်းပသောလ။" data-detail-season="မိုးနှောင်း"
+              data-detail-month="September"
+              data-detail-description="မြစ်ရေကျချိန်တွင် ကျင်းပကြပြီး ရိုးရာအားကစားဖြစ်သည်။ ရှေးက စစ်ရေးလေ့ကျင့်မှုနှင့် ဆက်စပ်မှုရှိသည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/6.jpg" alt="Tawthalin Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">တော်သလင်း</span>
+                  <span class="festival-card-season">September</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>တော်သလင်း</h3>
+                <p>လှေလှော်ပွဲ၊ မြစ်ရေရာသီပွဲတော်</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="သီတင်းကျွတ်"
+              data-detail-subtitle="မီးထွန်းပြီး မိဘဆရာများကို ကန်တော့။" data-detail-season="ဆောင်းဦး"
+              data-detail-month="October"
+              data-detail-description="ဗုဒ္ဓဘုရား တာဝတိံသာကမ္ဘာမှ ဆင်းသက်လာသည့်နေ့ကို ဂုဏ်ပြုသည်။ မီးထွန်းခြင်း၊ ကန်တော့ခြင်း၊ ကုသိုလ်ပြုခြင်းများ ပြုလုပ်ကြသည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/7.jpg" alt="Thadingyut Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">သီတင်းကျွတ်</span>
+                  <span class="festival-card-season">October</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>သီတင်းကျွတ်</h3>
+                <p>မီးထွန်းပွဲ၊ ကန်တော့ပွဲ၊ မိသားစုချိန်</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="တန်ဆောင်မုန်း"
+              data-detail-subtitle="ဝါထွက်ပြီး သင်္ကန်းကပ်ပွဲ။" data-detail-season="ဆောင်းရာသီ"
+              data-detail-month="November"
+              data-detail-description="သံဃာတော်များကို ကထိန်သင်္ကန်း ကပ်လှူကြသည်။ မီးပုံးပျံပွဲများလည်း ကျင်းပကြပြီး ယနေ့တွင် tourism event များပါဝင်လာသည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/8.jpg" alt="Tazaungmon Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">တန်ဆောင်မုန်း</span>
+                  <span class="festival-card-season">November</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>တန်ဆောင်မုန်း</h3>
+                <p>မီးပုံးပျံ၊ တန်ဆောင်တိုင်၊ မသိုးသင်္ကန်း</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="နတ်တော်"
+              data-detail-subtitle="နတ်ယုံကြည်မှုအခြေခံ ပွဲတော်များ။" data-detail-season="ဆောင်းရာသီ"
+              data-detail-month="December"
+              data-detail-description="ရှေးက animism ယုံကြည်မှုမှ ဆင်းသက်လာပြီး နတ်များကို ပူဇော်ကြသည်။ ယနေ့တွင် ယဉ်ကျေးမှုနှင့် ဖျော်ဖြေရေး ပေါင်းစပ်လာသည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/9.jpg" alt="Nattaw Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">နတ်တော်</span>
+                  <span class="festival-card-season">December</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>နတ်တော်</h3>
+                <p>အနုပညာ၊ စာပေ၊ ဇာတ်ပွဲရာသီ</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="ပြာသို"
+              data-detail-subtitle="မြင်းပြိုင်ပွဲများ ကျင်းပ။" data-detail-season="ဆောင်းရာသီ"
+              data-detail-month="January"
+              data-detail-description="ရှေးက တော်ဝင်အင်အားပြပွဲဖြစ်ပြီး စစ်ရေးနှင့် ဆက်စပ်။ ယနေ့တွင် နည်းသွားသော်လည်း တချို့နေရာတွင် ကျင်းပနေဆဲ။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/10.jpg" alt="Pyatho Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">ပြာသို</span>
+                  <span class="festival-card-season">January</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>ပြာသို</h3>
+                <p>ဘုရားပွဲ၊ ခရီးသွားချိန်၊ ဈေးပွဲ</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="တပို့တွဲ"
+              data-detail-subtitle="ထမနဲထိုး၍ လူမှုစုစည်းမှုကို ဖော်ပြ။" data-detail-season="ဆောင်းနှောင်း"
+              data-detail-month="February"
+              data-detail-description="ရပ်ကွက်အလိုက် လူများစုဝေးပြီး ထမနဲပြုလုပ်ကြသည်။ ညီညွတ်မှုနှင့် ပူးပေါင်းမှုကို ဖော်ပြသော ပွဲတော်ဖြစ်သည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/11.jpg" alt="Tabodwe Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">တပို့တွဲ</span>
+                  <span class="festival-card-season">February</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>တပို့တွဲ</h3>
+                <p>ထမနဲထိုးပွဲ၊ မျှဝေခြင်း၊ ပေါင်းစည်းမှု</p>
+              </div>
+            </article>
+
+            <article class="festival-card" data-spiral-card data-detail-title="တပေါင်း"
+              data-detail-subtitle="ဘုရားပွဲများ အများဆုံး ကျင်းပသောလ။" data-detail-season="နွေဦး"
+              data-detail-month="March"
+              data-detail-description="စိုက်ပျိုးရေးအပြီး အပန်းဖြေရာသီဖြစ်ပြီး ဘုရားပွဲများ၊ ဈေးတန်းများ ကျင်းပကြသည်။ ယနေ့တွင် funfair နှင့် entertainment ပါဝင်လာသည်။"
+              tabindex="0" role="button" aria-controls="festival-detail-panel" aria-pressed="false">
+              <div class="festival-card-media">
+                <img src="./assets/icons/12.jpg" alt="Tabaung Festival" />
+                <div class="festival-card-overlay">
+                  <span class="festival-card-month">တပေါင်း</span>
+                  <span class="festival-card-season">March</span>
+                </div>
+              </div>
+              <div class="festival-card-body">
+                <h3>တပေါင်း</h3>
+                <p>ဘုရားဖူးပွဲ၊ ပေါင်းကူးချိန်၊ နှစ်ပိတ်ပွဲ</p>
+              </div>
+            </article>
+          </div>
+
+          <section class="festival-detail-panel" id="festival-detail-panel" aria-live="polite">
+            <div class="festival-detail-media is-empty" data-detail-preview>
+              <span class="festival-detail-media-label">Selected Image Preview</span>
+              <span class="festival-detail-media-hint">မင်း image ထည့်မယ့်နေရာ</span>
+            </div>
+
+            <div class="festival-detail-copy">
+              <p class="festival-intro-label" data-detail-target-season>
+                နွေရာသီ
+              </p>
+              <h2 data-detail-target-title>တန်ခူး</h2>
+              <p class="festival-detail-subtitle" data-detail-target-subtitle>
+                မြန်မာနှစ်သစ်ကူး ရေကစားပွဲ
+              </p>
+              <p class="festival-detail-meta" data-detail-target-month>
+                April
+              </p>
+              <p class="festival-detail-description" data-detail-target-description>
+                တန်ခူးလမှာ သင်္ကြန်ရေကစားပွဲ၊ ကုသိုလ်ပြုခြင်းနဲ့
+                နှစ်သစ်ကြိုဆိုမှုတွေကြောင့် မြန်မာတစ်နိုင်ငံလုံးအတွက်
+                အတက်ကြွဆုံးအချိန်ဖြစ်ပါတယ်။
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- History 3D Slider Section -->
+    <section class="history-3d-section" id="history-section">
+      <div class="history-trigger-area">
+        <h1 id="history-header-trigger" class="history-main-title">
+          သမိုင်းအကြောင်း
+        </h1>
+      </div>
+
+      <!-- Detailed View (Split Layout) - Moved above container for z-index -->
+      <div class="history-detail-view" id="history-detail-view" style="display: none">
+        <div class="detail-left">
+          <h2 id="detail-title-3d"></h2>
+          <p id="detail-desc-3d"></p>
+        </div>
+        <div class="detail-right">
+          <div class="detail-card-placeholder" id="detail-card-placeholder"></div>
+        </div>
+      </div>
+
+      <div class="history-carousel-container" id="history-carousel-container" style="display: none">
+        <div class="carousel-3d-scene">
+          <div class="carousel-nav">
+            <button class="nav-btn prev" id="prev-history">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+              </svg>
+            </button>
+            <button class="nav-btn next" id="next-history">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+              </svg>
+            </button>
+          </div>
+          <div class="carousel-3d-track" id="carousel-track">
+            <!-- Cards will be generated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -26,6 +335,7 @@
 
 
   <script src="./js/main.js"></script>
+  <script src="./js/event.js"></script>
 </body>
 
 </html>

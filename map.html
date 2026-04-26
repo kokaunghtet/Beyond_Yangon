@@ -7,7 +7,8 @@
   <title>Beyond Yangon</title>
 
   <link rel="icon" href="./assets/icons/myanmar.svg" type="image/svg+xml">
-
+  <script src="https://unpkg.com/maplibre-gl@^5.24.0/dist/maplibre-gl.js"></script>
+  <link href="https://unpkg.com/maplibre-gl@^5.24.0/dist/maplibre-gl.css" rel="stylesheet" />
   <link rel="stylesheet" href="./css/base.css">
 </head>
 
@@ -16,8 +17,32 @@
     <div id="navbar-placeholder"></div>
   </header>
 
+  <div class="divider-block" style="height: 100px;"></div>
+
   <main>
-    Map
+    <div id="map"></div>
+
+    <div id="usage-guide">
+      <ul>
+        <li>Explore regional landmarks by selecting a state.</li>
+        <li>Interact with markers to view detailed location insights.</li>
+        <li>Use back button to go back to original state.</li>
+      </ul>
+    </div>
+
+    <div id="state-region-placeholder"></div>
+
+    <button id="back-btn">
+      &leftarrow; Back
+    </button>
+
+    <div id="place-info">
+      <button id="close-info">&times;</button>
+      <h3 id="place-name"></h3>
+      <div id="place-type"></div>
+      <img id="place-img" src="">
+      <p id="place-coords"></p>
+    </div>
   </main>
 
   <footer>
@@ -25,6 +50,9 @@
   </footer>
 
   <script src="./js/main.js"></script>
+  <script type="module" src="./js/map.js"></script>
+
+
 </body>
 
 </html>
