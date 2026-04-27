@@ -317,7 +317,7 @@ const famousPlaces = {
     },
     {
       name: "Indawgyi Lake",
-      lon: 96.3,
+      lon: 97.3965,
       lat: 25.1,
       type: "nature",
       image: "./assets/images/famous_places/kachin/IndawgyiLake.jpg",

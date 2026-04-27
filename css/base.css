@@ -1,5 +1,6 @@
 @import url("./components.css");
 @import url("./map.css");
+@import url("./event.css");
 
 :root {
    --bg: #FAF3E0;
