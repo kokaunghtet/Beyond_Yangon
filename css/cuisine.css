@@ -66,29 +66,22 @@
 }
 
 .upfood-card {
-  background: rgb(181, 166, 118);
-  border-radius: 20px;
   padding: 20px;
-  transition: 0.3s;
+
+  background-color: var(--nav-bg);
+  box-shadow: var(--shadow-sm);
+
   transition: all 0.5s ease;
-  opacity: 0;
-  transform: translateY(40px);
 }
 
 .upfood-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-20px) scale(1.5);
 }
 
 .upfood-card img {
   width: 100%;
-  border-radius: 15px;
   height: 160px;
   object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.upfood-card:hover img {
-  transform: scale(1.1);
 }
 
 .upfood-card h3 {
@@ -283,13 +276,15 @@
 
 /* KEY FIX: counter rotation */
 .food img {
-  width: 100%;
-  border-radius: 70%;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
   border: 50% rgb(71, 53, 13);
   position: relative;
   z-index: 2;
   box-shadow:
     0 6px 10px rgba(0, 0, 0, 0.25);
+  object-fit: cover;
   animation: counterRotate 20s linear infinite;
 }
 
@@ -362,7 +357,6 @@
   perspective: 1200px;
   top: 55%;
   right: -380px;
-
 
   width: 340px;
   height: 440px;
@@ -449,9 +443,13 @@
   background: #fff;
 
   border-radius: 10px;
-  background:
+  /* background:
     linear-gradient(#fffefc, #f7f3ec),
-    url("https://www.transparenttextures.com/patterns/paper.png");
+    url("https://www.transparenttextures.com/patterns/paper.png"); */
+  background:
+    linear-gradient(90deg, rgba(210, 45, 62, 0.3) 0 2px, transparent 2px 100%),
+    repeating-linear-gradient(180deg, transparent 0 26px, rgba(38, 77, 160, 0.18) 26px 27px),
+    linear-gradient(180deg, #fcf7e8 0%, #f7f0dc 100%);
 
   background-blend-mode: multiply;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);

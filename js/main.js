@@ -1,5 +1,3 @@
-// import { initializeFestivalSpiral } from "./event.js";
-
 function normalizeToHtmlFileName(pathname = "") {
   const trimmed = String(pathname).replace(/\/+$/, "");
   const lastSegment = trimmed.split("/").filter(Boolean).pop();
@@ -44,7 +42,7 @@ function setActiveNavbarLink(root = document) {
   });
 }
 
-// --- fetching & injection of Navbar Components ---------
+// --- fetching & injection of Navbar Components ----------
 async function loadNavbar() {
   const placeholder = document.getElementById("navbar-placeholder");
   if (!placeholder) {
@@ -58,7 +56,7 @@ async function loadNavbar() {
   setActiveNavbarLink(placeholder);
 }
 
-// --- fetching & injection of Footer Components ---------
+// --- fetching & injection of Footer Components ----------
 async function loadFooter() {
   const placeholder = document.getElementById("footer-placeholder");
   const response = await fetch("/components/footer.html");
@@ -78,7 +76,7 @@ if (document.readyState === "loading") {
   initializeFestivalSpiral();
 }
 
-// --- observer for text slideIn animation ------
+// --- observer for text slideIn animation ----------------
 (() => {
   const observer = new IntersectionObserver(
     (entries) => {
@@ -106,7 +104,7 @@ if (document.readyState === "loading") {
   });
 })();
 
-// --- Event JS -----------------------------------------------------------------
+// --- Event JS -------------------------------------------
 function initializeFestivalSpiral() {
   const scene = document.querySelector("[data-spiral-scene]");
   if (!scene) return;
