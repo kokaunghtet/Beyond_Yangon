@@ -1,20 +1,71 @@
-const cards = document.querySelectorAll(".upfood-card");
+// SCROLL REVEAL
+const cards = document.querySelectorAll(".food-card, .snack-card");
 
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.style.animation = "fadeUp 0.8s ease forwards";
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
       }
     });
   },
-  {
-    threshold: 0.2,
-  },
+  { threshold: 0.2 },
 );
 
 cards.forEach((card) => {
+  card.style.opacity = "0";
+  card.style.transform = "translateY(40px)";
+  card.style.transition = "all 0.8s ease";
   observer.observe(card);
+});
+
+/* FULLY WORKING HORIZONTAL SLIDER */
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".hanging-container");
+  const cards = document.querySelectorAll(".food-card");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+
+  document.querySelectorAll(".tear-strip").forEach((strip) => {
+    strip.addEventListener("click", () => {
+      strip.style.transform = "translateY(45px)";
+    });
+  });
+
+  let currentIndex = 0;
+
+  /* exact width including gap */
+  const gap = 32; // 2rem gap
+  const cardWidth = cards[0].offsetWidth + gap;
+
+  /* visible cards based on slider width */
+  function getVisibleCards() {
+    const sliderWidth = document.querySelector(".food-slider").offsetWidth;
+    return Math.floor(sliderWidth / cardWidth);
+  }
+
+  function updateSlider() {
+    container.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+  }
+
+  nextBtn.addEventListener("click", () => {
+    const maxIndex = cards.length - getVisibleCards();
+
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      updateSlider();
+    }
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlider();
+    }
+  });
+
+  window.addEventListener("resize", updateSlider);
 });
 
 let activeFood = null;
@@ -63,7 +114,6 @@ const foods = [
       "Mix fermented tea leaves with oil → add chopped cabbage & tomato → top with fried beans, peanuts & seeds → squeeze lime → mix before eating ",
     img: "./assets/images/cuisines/lahpetthoke.jpg",
   },
-
   {
     name: "Ohn No Khao Swe",
     desc: "Coconut noodles",
@@ -145,6 +195,224 @@ const foods = [
     img: "./assets/images/cuisines/montloneyaypaw.jpg",
   },
 ];
+
+// =========================
+// BURMESE DESSERTS DATA
+// =========================
+const snacks = [
+  {
+    name: "Shwe Yin Aye",
+    ingredients: "Coconut milk, sticky rice, jelly, sago, bread, sugar, ice",
+    howTo:
+      "Mix chilled coconut milk with cooked sticky rice, colorful jelly, and bread pieces. Serve over ice.",
+    img: "assets/images/cuisines/shweyinaye.jpg",
+  },
+  {
+    name: "Bein Mont",
+    ingredients: "Rice flour, coconut, sugar, sesame seeds",
+    howTo:
+      "Prepare rice batter, pour into pan, top with coconut and sesame, then bake until fluffy.",
+    img: "assets/images/cuisines/beinmont.jpg",
+  },
+  {
+    name: "Kyauk Kyaw",
+    ingredients: "Agar agar, coconut milk, sugar, pandan",
+    howTo:
+      "Boil agar mixture, layer coconut and clear jelly, then cool until firm.",
+    img: "assets/images/cuisines/kyaukkyaw.jpg",
+  },
+  {
+    name: "Shwe Htamin",
+    ingredients: "Sticky rice, turmeric, coconut shreds, sugar",
+    howTo:
+      "Steam sticky rice with turmeric, sweeten lightly, and top with coconut.",
+    img: "assets/images/cuisines/shwehtamin.jpg",
+  },
+  {
+    name: "Mont Let Saung",
+    ingredients: "Rice balls, jaggery syrup, coconut milk",
+    howTo:
+      "Prepare rice balls, add jaggery syrup and coconut milk, then chill before serving.",
+    img: "assets/images/cuisines/monttattsaung.jpg",
+  },
+];
+const localGoods = [
+  {
+    name: "Thanaka",
+    place: "Mandalay, Sagaing, Magway",
+    material: "Thanaka tree bark",
+    use: "Natural sunscreen, skin cooling, beauty care",
+    img: "./assets/images/cuisines/thanaka.jpg",
+  },
+  {
+    name: "Pyit Tie Htaung",
+    place: "Myanmar",
+    material: "Wood or bamboo",
+    use: "Traditional toy symbolizing perseverance and luck",
+    img: "./assets/images/cuisines/pyit-tie-htaung.jpg",
+  },
+  {
+    name: "Chin Lone",
+    place: "Myanmar",
+    material: "Handwoven rattan",
+    use: "Traditional sport and team performance",
+    img: "./assets/images/cuisines/chinlone.jpg",
+  },
+  {
+    name: "Puthein Umbrella",
+    place: "Pathein, Ayeyarwady",
+    material: "Bamboo, handmade paper, cotton",
+    use: "Sun protection, decoration, cultural souvenir",
+    img: "./assets/images/cuisines/putheinhtee.jpg",
+  },
+  {
+    name: "Oe Poke",
+    place: "Myanmar villages",
+    material: "Clay pottery",
+    use: "Cooking and water storage",
+    img: "./assets/images/cuisines/oe-poke.jpg",
+  },
+  {
+    name: "Sagaing Yay Oe",
+    place: "Sagaing Region",
+    material: "Clay",
+    use: "Traditional cooling water pot",
+    img: "./assets/images/cuisines/sagaing-yayoe.jpg",
+  },
+  {
+    name: "Yoke Thay",
+    place: "Mandalay",
+    material: "Wood, fabric, paint",
+    use: "Traditional puppet theater and cultural shows",
+    img: "./assets/images/cuisines/yokethay.jpg",
+  },
+  {
+    name: "Bamboo Weave Fan",
+    place: "Shan, Bagan, Myanmar",
+    material: "Bamboo strips",
+    use: "Cooling, ceremonies, decoration",
+    img: "./assets/images/cuisines/bamboo-weavefan.jpg",
+  },
+];
+
+function openGoods(index) {
+  const item = localGoods[index];
+  if (!item) return;
+
+  document.getElementById("goodsImg").src = item.img;
+  document.getElementById("goodsTitle").textContent = item.name;
+  document.getElementById("goodsPlace").textContent = item.place;
+  document.getElementById("goodsMaterial").textContent = item.material;
+  document.getElementById("goodsUse").textContent = item.use;
+
+  document.getElementById("goodsPopup").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeGoods() {
+  document.getElementById("goodsPopup").classList.remove("active");
+  document.body.style.overflow = "auto";
+}
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeGoods();
+});
+
+// =========================
+// LOCAL GOODS SLIDER
+// =========================
+window.addEventListener("DOMContentLoaded", () => {
+  const slider = document.querySelector(".hanging-container");
+  const prevBtn = document.querySelector(".slider-btn.prev");
+  const nextBtn = document.querySelector(".slider-btn.next");
+
+  if (slider && prevBtn && nextBtn) {
+    let currentSlide = 0;
+    const cardWidth = 292;
+
+    nextBtn.addEventListener("click", () => {
+      const visibleWidth = document.querySelector(".food-slider").clientWidth;
+      const maxSlide = slider.scrollWidth - visibleWidth;
+      currentSlide = Math.min(currentSlide + cardWidth, maxSlide);
+      slider.style.transform = `translateX(-${currentSlide}px)`;
+    });
+
+    prevBtn.addEventListener("click", () => {
+      currentSlide = Math.max(currentSlide - cardWidth, 0);
+      slider.style.transform = `translateX(-${currentSlide}px)`;
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  /* =========================
+     SIDEBAR ACTIVE LINKS
+  ========================= */
+  const navLinks = document.querySelectorAll(".sidebar-nav a");
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.forEach((item) => item.classList.remove("active"));
+      link.classList.add("active");
+    });
+  });
+
+  /* =========================
+     SCROLL REVEAL
+  ========================= */
+  const cards = document.querySelectorAll(".food-card, .snack-card");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+        }
+      });
+    },
+    { threshold: 0.2 },
+  );
+
+  cards.forEach((card) => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(40px)";
+    card.style.transition = "all 0.8s ease";
+    observer.observe(card);
+  });
+
+  /* =========================
+     TEAR STRIP EFFECT
+  ========================= */
+  document.querySelectorAll(".tear-strip").forEach((strip) => {
+    strip.addEventListener("click", () => {
+      strip.style.transform = "translateY(45px)";
+    });
+  });
+
+  /* =========================
+     FOOD SLIDER
+  ========================= */
+  const slider = document.querySelector(".hanging-container");
+  const prevBtn = document.querySelector(".slider-btn.prev");
+  const nextBtn = document.querySelector(".slider-btn.next");
+
+  if (slider && prevBtn && nextBtn) {
+    let currentSlide = 0;
+    const cardWidth = 292;
+
+    nextBtn.addEventListener("click", () => {
+      const visibleWidth = document.querySelector(".food-slider").clientWidth;
+      const maxSlide = slider.scrollWidth - visibleWidth;
+      currentSlide = Math.min(currentSlide + cardWidth, maxSlide);
+      slider.style.transform = `translateX(-${currentSlide}px)`;
+    });
+
+    prevBtn.addEventListener("click", () => {
+      currentSlide = Math.max(currentSlide - cardWidth, 0);
+      slider.style.transform = `translateX(-${currentSlide}px)`;
+    });
+  }
+});
 
 const container = document.getElementById("foods");
 const plate = document.getElementById("centerPlate");
@@ -233,7 +501,6 @@ function moveToCenter(el) {
   el.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
   el.style.zIndex = "30";
 }
-
 //  RESET FOOD
 function resetFood(el) {
   el.style.transition = "all 0.6s ease";
@@ -373,3 +640,33 @@ for (let i = 0; i < 10; i++) {
   const ring = document.createElement("div");
   spiral.appendChild(ring);
 }
+
+// =========================
+// SNACK POPUP
+// =========================
+window.addEventListener("DOMContentLoaded", () => {
+  const popup = document.getElementById("snackPopup");
+  const popupTitle = document.getElementById("popupTitle");
+  const popupIngredients = document.getElementById("popupIngredients");
+  const popupHowTo = document.getElementById("popupHowTo");
+
+  window.openSnack = function (index) {
+    const snack = snacks[index];
+    if (!snack || !popup) return;
+
+    popupTitle.textContent = snack.name;
+    popupIngredients.textContent = snack.ingredients;
+    popupHowTo.textContent = snack.howTo;
+
+    popup.classList.add("active");
+    document.body.style.overflow = "hidden";
+  };
+
+  window.closeSnack = function () {
+    popup.classList.remove("active");
+    document.body.style.overflow = "auto";
+  };
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSnack();
+  });
+});

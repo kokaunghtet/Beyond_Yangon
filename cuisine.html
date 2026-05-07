@@ -10,55 +10,214 @@
 
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/cuisine.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Playfair+Display:wght@700&family=Patrick+Hand&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
+
+
   <header>
     <div id="navbar-placeholder"></div>
   </header>
 
   <div class="divider-block" style="height: 70px;"></div>
 
-  <main>
-    <section class="hero">
-      <div class="overlay">
-        <div class="hero-content">
-          <h1>Discover Burmese Flavors</h1>
-          <p>Explore the rich taste of Myanmar’s most loved traditional dishes</p>
-          <button>Explore Menu</button>
+  <header>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <nav class="sidebar-nav">
+        <a href="#snacks" class="nav-item active">
+          <span>Snacks</span>
+        </a>
+
+        <a href="#localfoods" class="nav-item">
+          <span>Local Goods</span>
+        </a>
+
+        <a href="#app" class="nav-item">
+          <span>Famous Foods</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="menu-dot"></div>
+      </div>
+    </aside>
+
+  </header>
+
+
+
+  <section class="snack-wall-section" id="snacks">
+    <div class="snack-wall-title">
+      <h2>Burmese Desserts</h2>
+    </div>
+
+    <div class="snack-wall">
+
+      <div class="snack-note note1" onclick="openSnack(0)">
+        <div class="tape"></div>
+        <img src="assets/images/cuisines/shweyinaye.jpg" alt="Shwe Yin Aye">
+        <h3>Shwe Yin Aye</h3>
+        <p>Sweet coconut delight</p>
+      </div>
+
+      <div class="snack-note note2" onclick="openSnack(1)">
+        <div class="tape"></div>
+        <img src="assets/images/cuisines/beinmont.jpg" alt="Bein Mont">
+        <h3>Bein Mont</h3>
+        <p>Traditional rice cake</p>
+      </div>
+
+      <div class="snack-note note3" onclick="openSnack(2)">
+        <div class="tape"></div>
+        <img src="assets/images/cuisines/kyaukkyaw.jpg" alt="Kyauk Kyaw">
+        <h3>Kyauk Kyaw</h3>
+        <p>Cool jelly dessert</p>
+      </div>
+
+      <div class="snack-note note4" onclick="openSnack(3)">
+        <div class="tape"></div>
+        <img src="assets/images/cuisines/shwehtamin.jpg" alt="Shwe Htamin">
+        <h3>Shwe Htamin</h3>
+        <p>Golden sticky rice</p>
+      </div>
+
+      <div class="snack-note note5" onclick="openSnack(4)">
+        <div class="tape"></div>
+        <img src="assets/images/cuisines/monttattsaung.jpg" alt="Mont Lat Saung">
+        <h3>Mont Lat Saung</h3>
+        <p>Coconut jaggery dessert</p>
+      </div>
+
+    </div>
+  </section>
+  <div class="snack-popup" id="snackPopup">
+    <div class="popup-overlay" onclick="closeSnack()"></div>
+
+    <div class="popup-card">
+      <button class="close-btn" onclick="closeSnack()">×</button>
+
+      <h2 id="popupTitle"></h2>
+
+      <div class="popup-row">
+        <span class="popup-label">Ingredients:</span>
+        <p id="popupIngredients"></p>
+      </div>
+
+      <div class="popup-row">
+        <span class="popup-label">How To Make:</span>
+        <p id="popupHowTo"></p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="content-area">
+    <!-- LOCAL FOODS -->
+    <section class="local-food-section" id="localfoods">
+      <h2>Local Famous Goods</h2>
+
+      <div class="slider-wrapper">
+        <button class="slider-btn prev">&#10094;</button>
+
+        <div class="food-slider">
+          <div class="main-rope"></div>
+
+          <div class="hanging-container">
+
+            <div class="food-card" onclick="openGoods(0)">
+              <div class="hanger-line"></div>
+              <img src="./assets/images/cuisines/thanaka.jpg" alt="Thanaka">
+              <h3>Thanaka</h3>
+            </div>
+
+            <div class="food-card" onclick="openGoods(1)">
+              <div class="hanger-line"></div>
+              <img src="./assets/images/cuisines/pyit-tie-htaung.jpg" alt="Pyit Tie Htaung">
+              <h3>Pyit Tie Htaung</h3>
+            </div>
+
+            <div class="food-card" onclick="openGoods(2)">
+              <div class="hanger-line"></div>
+              <img src="./assets/images/cuisines/chinlone.jpg" alt="Chin Lone">
+              <h3>Chin Lone</h3>
+            </div>
+            <div class="food-card" onclick="openGoods(3)">
+              <div class="hanger-line"></div>
+              <img src="./assets/images/cuisines/putheinhtee.jpg" alt="Puthein Umbrella">
+              <h3>Puthein Umbrella</h3>
+            </div>
+
+            <div class="food-card" onclick="openGoods(4)">
+              <div class="hanger-line"></div>
+              <img src="./assets/images/cuisines/oe-poke.jpg" alt="Oe Poke">
+              <h3>Oe Poke</h3>
+            </div>
+
+            <div class="food-card" onclick="openGoods(5)">
+              <div class="hanger-line"></div>
+              <img src="./assets/images/cuisines/sagaing-yayoe.jpg" alt="Yayoe">
+              <h3>Sagaing Yay Oe</h3>
+            </div>
+
+            <div class="food-card" onclick="openGoods(6)">
+              <div class="hanger-line"></div>
+              <img src="./assets/images/cuisines/yokethay.jpg" alt="Yoke Thay">
+              <h3>Yoke Thay</h3>
+            </div>
+
+            <div class="food-card" onclick="openGoods(7)">
+              <div class="hanger-line"></div>
+              <img src="./assets/images/cuisines/bamboo-weavefan.jpg" alt="bamboo weavefan">
+              <h3>Bamboo Weave Fan</h3>
+            </div>
+
+          </div>
         </div>
+
+        <button class="slider-btn next">&#10095;</button>
       </div>
     </section>
+    <div class="goods-popup" id="goodsPopup">
+      <div class="goods-overlay" onclick="closeGoods()"></div>
 
-    <section class="upfoods">
-      <h2>Most Famous Burmese Dishes</h2>
+      <div class="goods-popup-card">
+        <button class="close-btn" onclick="closeGoods()">×</button>
 
-      <div class="upfood-grid">
-        <div class="upfood-card">
-          <img src="assets/images/cuisines/mohinga.jpg" alt="Mohinga">
-          <h3>Mohinga</h3>
-          <p>Traditional fish noodle soup, Myanmar’s national dish</p>
+        <img id="goodsImg" src="" alt="">
+        <h2 id="goodsTitle"></h2>
+
+        <div class="goods-info-row">
+          <span>Made In:</span>
+          <p id="goodsPlace"></p>
         </div>
 
-        <div class="upfood-card">
-          <img src="./assets/images/cuisines/lahpet(mdy).jpg" alt="Laphet Thoke">
-          <h3>Laphet Thoke</h3>
-          <p>Fermented tea leaf salad with crunchy toppings</p>
+        <div class="goods-info-row">
+          <span>Made Of:</span>
+          <p id="goodsMaterial"></p>
         </div>
 
-        <div class="upfood-card">
-          <img src="./assets/images/cuisines/ohnonoodle.jpg" alt="Ohn No Khao Swe">
-          <h3>Ohn No Khao Swe</h3>
-          <p>Creamy coconut chicken noodle soup</p>
+        <div class="goods-info-row">
+          <span>Used For:</span>
+          <p id="goodsUse"></p>
         </div>
       </div>
-    </section>
+    </div>
+
+
+
+
 
     <div class="app" id="app">
 
       <!-- TITLE -->
 
-      <h1 class="heading">Others Famous Foods</h1>
+      <h1 class="heading">Burmese Famous Foods</h1>
 
       <!-- LEFT: FOOD CIRCLE -->
 
@@ -111,7 +270,7 @@
       </div>
   </main>
 
-  <footer>
+  <footer class="footer">
     <div id="footer-placeholder"></div>
   </footer>
 
