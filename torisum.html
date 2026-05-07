@@ -1,0 +1,1546 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Myanmar Tourism Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #faf6ee;
+        --surface: #fffdf8;
+        --surface-2: #f7efe0;
+        --ink: #3b2819;
+        --muted: #7d6654;
+        --gold: #c79a2f;
+        --line: rgba(199, 154, 47, 0.18);
+        --shadow: 0 18px 40px rgba(65, 45, 18, 0.12);
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, 0.84),
+            transparent 28%
+          ),
+          linear-gradient(180deg, #fdfaf3 0%, #f6ede0 100%);
+        color: var(--ink);
+        overflow-x: hidden;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .page {
+        min-height: 100vh;
+      }
+
+      .hero-slider {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        background: #20170f;
+      }
+
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.9s var(--ease),
+          transform 0.9s var(--ease);
+        transform: scale(1.03);
+      }
+
+      .hero-slide.is-active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+      }
+
+      .hero-backdrop {
+        position: absolute;
+        inset: 0;
+        background-position: center;
+        background-size: cover;
+        transform: scale(1.02);
+        transition: transform 6s var(--ease);
+      }
+
+      .hero-slide.is-active .hero-backdrop {
+        transform: scale(1.08);
+      }
+
+      .hero-backdrop::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(18, 12, 8, 0.14),
+            transparent 22%,
+            rgba(18, 12, 8, 0.2) 72%,
+            rgba(18, 12, 8, 0.56)
+          ),
+          linear-gradient(
+            90deg,
+            rgba(18, 12, 8, 0.12),
+            transparent 34%,
+            transparent 70%,
+            rgba(18, 12, 8, 0.18)
+          );
+      }
+
+      .hero-copy {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 2;
+        width: min(980px, calc(100% - 32px));
+        transform: translate(-50%, -44%);
+        text-align: center;
+        color: #fffef9;
+      }
+
+      .hero-copy small {
+        display: inline-block;
+        margin-bottom: 16px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .hero-copy h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.7rem, 6vw, 5.6rem);
+        line-height: 1;
+        letter-spacing: -0.05em;
+        margin-bottom: 14px;
+        text-shadow: 0 12px 30px rgba(0, 0, 0, 0.26);
+      }
+
+      .hero-copy p {
+        max-width: 760px;
+        margin: 0 auto;
+        line-height: 1.8;
+        font-size: 1.02rem;
+        color: rgba(255, 249, 240, 0.92);
+        text-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-jumps {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .hero-jump {
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        background: rgba(255, 255, 255, 0.14);
+        color: #fffef9;
+        border-radius: 999px;
+        padding: 12px 18px;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        font-size: 0.88rem;
+        font-weight: 700;
+        transition:
+          transform 0.25s var(--ease),
+          background 0.25s var(--ease);
+      }
+
+      .hero-jump:hover {
+        transform: translateY(-2px);
+        background: rgba(199, 154, 47, 0.82);
+        border-color: rgba(199, 154, 47, 0.82);
+      }
+
+      .hero-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 4;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        background: rgba(255, 255, 255, 0.16);
+        color: #fff;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        cursor: pointer;
+        transform: translateY(-50%);
+        transition:
+          transform 0.25s var(--ease),
+          background 0.25s var(--ease);
+      }
+
+      .hero-arrow:hover {
+        transform: translateY(-50%) scale(1.06);
+        background: rgba(199, 154, 47, 0.82);
+        border-color: rgba(199, 154, 47, 0.82);
+      }
+
+      .hero-arrow.prev {
+        left: 22px;
+      }
+
+      .hero-arrow.next {
+        right: 22px;
+      }
+
+      .hex-strip {
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        z-index: 3;
+        transform: translateX(-50%);
+        width: min(1780px, calc(100% - 20px));
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        align-items: flex-end;
+        pointer-events: none;
+      }
+
+      .hex {
+        position: relative;
+        width: 220px;
+        height: 210px;
+        clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%);
+        border: 5px solid #fff;
+        overflow: hidden;
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.16);
+        flex: 0 0 auto;
+      }
+
+      .hex:nth-child(odd) {
+        transform: translateY(18px);
+      }
+
+      .hex img {
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hex-caption {
+        position: absolute;
+        inset: auto 0 0 0;
+        padding: 14px 10px 16px;
+        text-align: center;
+        background: linear-gradient(180deg, transparent, rgba(16, 11, 7, 0.76));
+        color: #fff;
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .section-shell {
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 56px 28px 72px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+
+      .section-header small {
+        display: inline-block;
+        margin-bottom: 10px;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+
+      .section-header h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        margin-bottom: 12px;
+      }
+
+      .section-header p {
+        max-width: 760px;
+        margin: 0 auto;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .beauty-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 26px;
+      }
+
+      .beauty-card {
+        overflow: hidden;
+        border-radius: 24px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+      }
+
+      .beauty-card img {
+        height: 280px;
+        object-fit: cover;
+      }
+
+      .beauty-copy {
+        padding: 22px;
+      }
+
+      .beauty-copy h3 {
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+
+      .beauty-copy p {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .golden-list {
+        display: grid;
+        gap: 26px;
+      }
+
+      .golden-row {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 470px;
+        overflow: hidden;
+        border-radius: 28px;
+        background: #fffaf1;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(199, 154, 47, 0.12);
+      }
+
+      .golden-row.reverse {
+        direction: rtl;
+      }
+
+      .golden-row.reverse > * {
+        direction: ltr;
+      }
+
+      .golden-media {
+        position: relative;
+      }
+
+      .golden-media img {
+        height: 100%;
+        object-fit: cover;
+        filter: sepia(14%) saturate(0.92) contrast(1.02);
+      }
+
+      .golden-number {
+        position: absolute;
+        top: 20px;
+        left: 26px;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(3.8rem, 8vw, 5.7rem);
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.42);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .golden-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 46px 54px;
+        background: linear-gradient(180deg, #fffdf9, #f8f0e3);
+      }
+
+      .golden-copy small {
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+      }
+
+      .golden-copy h3 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 3vw, 3rem);
+        line-height: 1.04;
+        margin-bottom: 14px;
+        max-width: 440px;
+      }
+
+      .golden-divider {
+        width: 52px;
+        height: 2px;
+        background: var(--gold);
+        margin-bottom: 26px;
+      }
+
+      .golden-copy p {
+        color: var(--muted);
+        line-height: 1.9;
+        margin-bottom: 18px;
+        max-width: 560px;
+      }
+
+      .golden-facts h4 {
+        margin-bottom: 14px;
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #8d7150;
+      }
+
+      .golden-fact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px 22px;
+      }
+
+      .golden-fact-grid span {
+        position: relative;
+        padding-left: 16px;
+        color: var(--ink);
+        font-size: 0.84rem;
+        font-weight: 700;
+      }
+
+      .golden-fact-grid span::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.65em;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+      }
+
+      .experience-stage {
+        position: relative;
+        min-height: 720px;
+        padding: 32px 20px 30px;
+        border-radius: 32px;
+        background:
+          radial-gradient(
+            circle at center,
+            rgba(232, 211, 163, 0.28),
+            transparent 42%
+          ),
+          linear-gradient(180deg, #fffdf7, #f6edde);
+        border: 1px solid var(--line);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .experience-carousel {
+        position: relative;
+        margin-top: 14px;
+        padding: 0 72px;
+      }
+
+      .experience-view {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        min-height: 460px;
+        overflow: hidden;
+        border-radius: 26px;
+        background: #fffdf8;
+        box-shadow: 0 16px 34px rgba(56, 37, 15, 0.12);
+      }
+
+      .experience-photo img {
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .experience-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 34px;
+        background: linear-gradient(180deg, #fffdf9, #f7efe1);
+      }
+
+      .experience-copy small {
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+      }
+
+      .experience-copy h3 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.9rem, 3vw, 3rem);
+        line-height: 1.05;
+        margin-bottom: 14px;
+      }
+
+      .experience-copy p {
+        color: var(--muted);
+        line-height: 1.9;
+        margin-bottom: 18px;
+      }
+
+      .experience-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .experience-meta span {
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(199, 154, 47, 0.1);
+        font-size: 0.84rem;
+        font-weight: 700;
+      }
+
+      .experience-thumbs {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .experience-thumb {
+        border: none;
+        background: transparent;
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .experience-thumb-frame {
+        overflow: hidden;
+        border-radius: 18px;
+        box-shadow: 0 12px 24px rgba(56, 37, 15, 0.12);
+        border: 3px solid transparent;
+        transition:
+          transform 0.25s var(--ease),
+          border-color 0.25s var(--ease);
+      }
+
+      .experience-thumb.is-active .experience-thumb-frame,
+      .experience-thumb:hover .experience-thumb-frame {
+        transform: translateY(-4px);
+        border-color: var(--gold);
+      }
+
+      .experience-thumb-frame img {
+        height: 120px;
+        object-fit: cover;
+      }
+
+      .experience-thumb span {
+        display: block;
+        margin-top: 8px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--ink);
+        text-align: center;
+      }
+
+      .experience-thumb small {
+        display: block;
+        margin-top: 4px;
+        line-height: 1.45;
+        font-size: 0.74rem;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid rgba(199, 154, 47, 0.22);
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--ink);
+        cursor: pointer;
+        box-shadow: 0 12px 24px rgba(56, 37, 15, 0.12);
+        transform: translateY(-50%);
+        transition:
+          transform 0.22s var(--ease),
+          background 0.22s var(--ease);
+      }
+
+      .carousel-arrow:hover {
+        transform: translateY(-50%) scale(1.05);
+        background: rgba(199, 154, 47, 0.16);
+      }
+
+      .carousel-arrow.prev {
+        left: 8px;
+      }
+
+      .carousel-arrow.next {
+        right: 8px;
+      }
+
+      .experience-title {
+        text-align: center;
+        margin-top: 26px;
+        font-size: clamp(1.4rem, 2.6vw, 2rem);
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      @media (max-width: 1200px) {
+        .hex {
+          width: 180px;
+          height: 172px;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .hero-slider {
+          min-height: 1100px;
+        }
+
+        .hero-copy {
+          transform: translate(-50%, -48%);
+        }
+
+        .hex-strip {
+          flex-wrap: wrap;
+          gap: 10px;
+          bottom: 22px;
+        }
+
+        .hex,
+        .hex:nth-child(odd) {
+          width: 165px;
+          height: 158px;
+          transform: none;
+        }
+
+        .beauty-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .golden-row,
+        .golden-row.reverse {
+          grid-template-columns: 1fr;
+          direction: ltr;
+        }
+
+        .golden-copy {
+          padding: 34px 24px;
+        }
+
+        .golden-fact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .experience-stage {
+          min-height: 980px;
+        }
+
+        .experience-carousel {
+          padding: 0;
+        }
+
+        .experience-view {
+          grid-template-columns: 1fr;
+        }
+
+        .experience-thumbs {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .carousel-arrow {
+          top: auto;
+          bottom: -68px;
+          transform: none;
+        }
+
+        .carousel-arrow:hover {
+          transform: scale(1.05);
+        }
+
+        .carousel-arrow.prev {
+          left: calc(50% - 60px);
+        }
+
+        .carousel-arrow.next {
+          right: calc(50% - 60px);
+        }
+      }
+
+      @media (max-width: 680px) {
+        .hero-slider {
+          min-height: 1180px;
+        }
+
+        .hero-copy h1 {
+          font-size: 2.4rem;
+        }
+
+        .hero-copy p {
+          font-size: 0.92rem;
+        }
+
+        .hex {
+          width: 132px;
+          height: 126px;
+        }
+
+        .section-shell {
+          padding: 42px 14px 56px;
+        }
+
+        .beauty-card img {
+          height: 230px;
+        }
+
+        .golden-copy,
+        .experience-copy {
+          padding: 24px 20px;
+        }
+
+        .experience-stage {
+          padding: 22px 10px 18px;
+        }
+
+        .experience-thumbs {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <main>
+        <section class="hero-slider" aria-label="Myanmar tourism slider">
+          <article class="hero-slide is-active" data-slide>
+            <div
+              class="hero-backdrop"
+              style="
+                background-image:
+                  linear-gradient(
+                    180deg,
+                    rgba(247, 170, 58, 0.08),
+                    rgba(0, 0, 0, 0.08)
+                  ),
+                  url(&quot;./assets/images/famous_places/mandalay/ubeinbridge.jpg&quot;);
+              "
+            ></div>
+            <div class="hero-copy">
+              <small>Myanmar Showcase</small>
+              <h1>Beauty of Myanmar</h1>
+              <p>
+                Explore six of Myanmar's most beautiful and iconic destinations
+                through a calm visual introduction to the country.
+              </p>
+              <div class="hero-jumps">
+                <button
+                  class="hero-jump"
+                  type="button"
+                  data-target="#beauty-section"
+                >
+                  Beauty Section
+                </button>
+              </div>
+            </div>
+            <div class="hex-strip" aria-hidden="true">
+              <div class="hex">
+                <img src="./assets/images/eras/bagan.png" alt="" />
+                <div class="hex-caption">Bagan</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/shan/Inle_Lake_Header.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Inle Lake</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/mandalay/ubeinbridge.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">U Bein Bridge</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/mon/KyaiktiyoPagoda.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Kyaiktiyo</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/bago/shwemawdawpagoda.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Shwemawdaw</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/ayeyarwady/ngwesaungbeach.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Ngwesaung</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide" data-slide>
+            <div
+              class="hero-backdrop"
+              style="
+                background-image:
+                  linear-gradient(
+                    180deg,
+                    rgba(255, 195, 92, 0.12),
+                    rgba(0, 0, 0, 0.12)
+                  ),
+                  url(&quot;./assets/images/famous_places/yangon/shwedagonpagoda.jpg&quot;);
+              "
+            ></div>
+            <div class="hero-copy">
+              <small>Sacred Heritage</small>
+              <h1>Golden Myanmar</h1>
+              <p>
+                Discover Myanmar's golden pagodas, Buddhist landmarks, and
+                sacred spaces through a dedicated religious heritage page.
+              </p>
+              <div class="hero-jumps">
+                <button
+                  class="hero-jump"
+                  type="button"
+                  data-target="#golden-section"
+                >
+                  Golden Section
+                </button>
+              </div>
+            </div>
+            <div class="hex-strip" aria-hidden="true">
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/yangon/shwedagonpagoda.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Shwedagon</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/mon/KyaiktiyoPagoda.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Kyaiktiyo</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/mandalay/mahamunipagoda.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Mahamuni</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/shan/PhaungDawOoPagoda.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Phaung Daw Oo</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/ayeyarwady/shwemokhtawpagoda.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Shwemokhtaw</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/magway/myatthalunpagoda.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Myat Tha Lun</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="hero-slide" data-slide>
+            <div
+              class="hero-backdrop"
+              style="
+                background-image:
+                  linear-gradient(
+                    180deg,
+                    rgba(108, 165, 190, 0.08),
+                    rgba(0, 0, 0, 0.14)
+                  ),
+                  url(&quot;./assets/images/famous_places/shan/Inle_Lake_Header.jpg&quot;);
+              "
+            ></div>
+            <div class="hero-copy">
+              <small>Coastal Journeys</small>
+              <h1>Experience Beauty of Myanmar</h1>
+              <p>
+                Step into the pristine beaches and coastal escapes that show the
+                stunning seaside beauty of Myanmar.
+              </p>
+              <div class="hero-jumps">
+                <button
+                  class="hero-jump"
+                  type="button"
+                  data-target="#experience-section"
+                >
+                  Experience Section
+                </button>
+              </div>
+            </div>
+            <div class="hex-strip" aria-hidden="true">
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/rakhine/NgapaliBeach.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Ngapali</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/ayeyarwady/ngwesaungbeach.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Ngwesaung</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/ayeyarwady/chaungthabeach.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Chaung Tha</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/tanintharyi/DaweiBeach.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Dawei</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/mon/SetseBeach.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Setse</div>
+              </div>
+              <div class="hex">
+                <img
+                  src="./assets/images/famous_places/tanintharyi/MaungmaganBeach.jpg"
+                  alt=""
+                />
+                <div class="hex-caption">Maungmagan</div>
+              </div>
+            </div>
+          </article>
+
+          <button
+            class="hero-arrow prev"
+            type="button"
+            id="heroPrev"
+            aria-label="Previous hero page"
+          >
+            &#8592;
+          </button>
+          <button
+            class="hero-arrow next"
+            type="button"
+            id="heroNext"
+            aria-label="Next hero page"
+          >
+            &#8594;
+          </button>
+        </section>
+
+        <section class="section-shell" id="beauty-section">
+          <div class="section-header">
+            <small>Page One</small>
+            <h2>Beauty of Myanmar</h2>
+            <p>
+              The first hero page leads here and presents six signature Myanmar
+              destinations with image-focused cards and short matching
+              descriptions.
+            </p>
+          </div>
+
+          <div class="beauty-grid">
+            <article class="beauty-card">
+              <img
+                src="./assets/images/eras/bagan.png"
+                alt="Bagan Temple Plains"
+              />
+              <div class="beauty-copy">
+                <h3>Bagan Temple Plains</h3>
+                <p>
+                  UNESCO heritage temples, sunrise scenes, and one of Myanmar's
+                  most iconic historic landscapes.
+                </p>
+              </div>
+            </article>
+            <article class="beauty-card">
+              <img
+                src="./assets/images/famous_places/shan/Inle_Lake_Header.jpg"
+                alt="Inle Lake"
+              />
+              <div class="beauty-copy">
+                <h3>Inle Lake</h3>
+                <p>
+                  Floating villages, peaceful water life, and scenic Shan
+                  landscapes that feel calm and refined.
+                </p>
+              </div>
+            </article>
+            <article class="beauty-card">
+              <img
+                src="./assets/images/famous_places/mandalay/ubeinbridge.jpg"
+                alt="U Bein Bridge"
+              />
+              <div class="beauty-copy">
+                <h3>U Bein Bridge</h3>
+                <p>
+                  The world's longest teak bridge, famous for its sunset
+                  reflections and historic Mandalay atmosphere.
+                </p>
+              </div>
+            </article>
+            <article class="beauty-card">
+              <img
+                src="./assets/images/famous_places/mon/KyaiktiyoPagoda.jpg"
+                alt="Kyaiktiyo Pagoda"
+              />
+              <div class="beauty-copy">
+                <h3>Kyaiktiyo Pagoda</h3>
+                <p>
+                  The iconic Golden Rock perched on a cliff, a miraculous sacred
+                  landmark and mountain pilgrimage site.
+                </p>
+              </div>
+            </article>
+            <article class="beauty-card">
+              <img
+                src="./assets/images/famous_places/bago/shwemawdawpagoda.jpg"
+                alt="Shwemawdaw Pagoda"
+              />
+              <div class="beauty-copy">
+                <h3>Shwemawdaw Pagoda</h3>
+                <p>
+                  Known as the Golden God Temple, it is the tallest pagoda in
+                  Myanmar and a central heritage icon of Bago.
+                </p>
+              </div>
+            </article>
+            <article class="beauty-card">
+              <img
+                src="./assets/images/famous_places/ayeyarwady/ngwesaungbeach.jpg"
+                alt="Ngwe Saung Beach"
+              />
+              <div class="beauty-copy">
+                <h3>Ngwe Saung Beach</h3>
+                <p>
+                  Pristine silver sands and clear blue waves, offering a relaxed
+                  coastal escape on the Ayeyarwady shore.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-shell" id="golden-section">
+          <div class="section-header">
+            <small>Page Two</small>
+            <h2>Golden Myanmar</h2>
+            <p>
+              This second page follows the same split editorial feeling as your
+              index design, using pagoda-only photos with image and text on
+              opposite sides.
+            </p>
+          </div>
+
+          <div class="golden-list">
+            <article class="golden-row">
+              <div class="golden-media">
+                <span class="golden-number">01</span>
+                <img
+                  src="./assets/images/famous_places/yangon/shwedagonpagoda.jpg"
+                  alt="Shwedagon Pagoda"
+                />
+              </div>
+              <div class="golden-copy">
+                <small>Yangon Sacred Landmark</small>
+                <h3>Shwedagon Pagoda</h3>
+                <div class="golden-divider"></div>
+                <p>
+                  Myanmar's most celebrated pagoda rises above Yangon with a
+                  golden silhouette that defines the spiritual image of the
+                  country.
+                </p>
+                <div class="golden-facts">
+                  <h4>Key Facts</h4>
+                  <div class="golden-fact-grid">
+                    <span>Gold-plated stupa</span>
+                    <span>Sunset skyline</span>
+                    <span>Pilgrimage center</span>
+                    <span>National icon</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="golden-row reverse">
+              <div class="golden-media">
+                <span class="golden-number">02</span>
+                <img
+                  src="./assets/images/famous_places/mon/KyaiktiyoPagoda.jpg"
+                  alt="Kyaiktiyo Golden Rock"
+                />
+              </div>
+              <div class="golden-copy">
+                <small>Mon State Heritage</small>
+                <h3>Kyaiktiyo Golden Rock</h3>
+                <div class="golden-divider"></div>
+                <p>
+                  A mountain-top sacred destination where faith, mist, and gold
+                  create one of Myanmar's most dramatic religious views.
+                </p>
+                <div class="golden-facts">
+                  <h4>Key Facts</h4>
+                  <div class="golden-fact-grid">
+                    <span>Cliff-edge landmark</span>
+                    <span>Spiritual route</span>
+                    <span>Seasonal visitors</span>
+                    <span>Mountain pilgrimage</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="golden-row">
+              <div class="golden-media">
+                <span class="golden-number">03</span>
+                <img
+                  src="./assets/images/famous_places/mandalay/mahamunipagoda.jpg"
+                  alt="Mahamuni Pagoda"
+                />
+              </div>
+              <div class="golden-copy">
+                <small>Mandalay Sacred Heritage</small>
+                <h3>Mahamuni Pagoda</h3>
+                <div class="golden-divider"></div>
+                <p>
+                  One of the country's most venerated Buddha images, Mahamuni
+                  brings Mandalay's sacred identity into the golden page.
+                </p>
+                <div class="golden-facts">
+                  <h4>Key Facts</h4>
+                  <div class="golden-fact-grid">
+                    <span>Historic worship site</span>
+                    <span>Mandalay icon</span>
+                    <span>Devotional atmosphere</span>
+                    <span>Major Buddha image</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="golden-row reverse">
+              <div class="golden-media">
+                <span class="golden-number">04</span>
+                <img
+                  src="./assets/images/famous_places/shan/PhaungDawOoPagoda.jpg"
+                  alt="Phaung Daw Oo Pagoda"
+                />
+              </div>
+              <div class="golden-copy">
+                <small>Inle Lake Sacred Scene</small>
+                <h3>Phaung Daw Oo Pagoda</h3>
+                <div class="golden-divider"></div>
+                <p>
+                  This lakeside pagoda brings together water journeys and
+                  Buddhist devotion, making it ideal for the golden Myanmar
+                  page.
+                </p>
+                <div class="golden-facts">
+                  <h4>Key Facts</h4>
+                  <div class="golden-fact-grid">
+                    <span>Lake-side worship</span>
+                    <span>Festival tradition</span>
+                    <span>Local identity</span>
+                    <span>Shan devotion</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="golden-row">
+              <div class="golden-media">
+                <span class="golden-number">05</span>
+                <img
+                  src="./assets/images/famous_places/ayeyarwady/shwemokhtawpagoda.jpg"
+                  alt="Shwemokhtaw Pagoda"
+                />
+              </div>
+              <div class="golden-copy">
+                <small>Ayeyarwady Sacred Landmark</small>
+                <h3>Shwemokhtaw Pagoda</h3>
+                <div class="golden-divider"></div>
+                <p>
+                  A strong delta-region pagoda image that expands the golden
+                  Myanmar theme beyond the central religious cities.
+                </p>
+                <div class="golden-facts">
+                  <h4>Key Facts</h4>
+                  <div class="golden-fact-grid">
+                    <span>Regional landmark</span>
+                    <span>Golden stupa</span>
+                    <span>Official tourism value</span>
+                    <span>Delta heritage</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="golden-row reverse">
+              <div class="golden-media">
+                <span class="golden-number">06</span>
+                <img
+                  src="./assets/images/famous_places/magway/myatthalunpagoda.jpg"
+                  alt="Myat Tha Lun Pagoda"
+                />
+              </div>
+              <div class="golden-copy">
+                <small>Magway River Heritage</small>
+                <h3>Myat Tha Lun Pagoda</h3>
+                <div class="golden-divider"></div>
+                <p>
+                  Set above the riverfront, this pagoda adds another classic
+                  golden landmark to the second page collection.
+                </p>
+                <div class="golden-facts">
+                  <h4>Key Facts</h4>
+                  <div class="golden-fact-grid">
+                    <span>River panorama</span>
+                    <span>Historic worship</span>
+                    <span>Golden skyline</span>
+                    <span>Magway symbol</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-shell" id="experience-section">
+          <div class="section-header">
+            <small>Page Three</small>
+            <h2>Experience Beauty of Myanmar</h2>
+            <p>
+              The last section uses arrow controls instead of a timer and each
+              water destination now includes matching photo text under the
+              thumbnails.
+            </p>
+          </div>
+
+          <div class="experience-stage">
+            <div class="experience-carousel">
+              <button
+                class="carousel-arrow prev"
+                type="button"
+                id="waterPrev"
+                aria-label="Previous water place"
+              >
+                &#8592;
+              </button>
+              <button
+                class="carousel-arrow next"
+                type="button"
+                id="waterNext"
+                aria-label="Next water place"
+              >
+                &#8594;
+              </button>
+
+              <div class="experience-view">
+                <div class="experience-photo">
+                  <img
+                    id="waterMainImage"
+                    src="./assets/images/famous_places/rakhine/NgapaliBeach.jpg"
+                    alt="Ngapali Beach"
+                  />
+                </div>
+                <div class="experience-copy">
+                  <small id="waterLabel">Beach Escape</small>
+                  <h3 id="waterTitle">Ngapali Beach</h3>
+                  <p id="waterDescription">
+                    Pristine white sand and turquoise waters, Myanmar's premier
+                    beach destination for ultimate relaxation.
+                  </p>
+                  <div class="experience-meta" id="waterMeta">
+                    <span>White sand</span>
+                    <span>Turquoise sea</span>
+                    <span>Rakhine Coast</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="experience-thumbs">
+              <button
+                class="experience-thumb is-active"
+                type="button"
+                data-water="0"
+              >
+                <div class="experience-thumb-frame">
+                  <img
+                    src="./assets/images/famous_places/rakhine/NgapaliBeach.jpg"
+                    alt="Ngapali Beach"
+                  />
+                </div>
+                <span>Ngapali Beach</span>
+                <small>Pristine white sand and turquoise waters.</small>
+              </button>
+              <button class="experience-thumb" type="button" data-water="1">
+                <div class="experience-thumb-frame">
+                  <img
+                    src="./assets/images/famous_places/ayeyarwady/ngwesaungbeach.jpg"
+                    alt="Ngwe Saung Beach"
+                  />
+                </div>
+                <span>Ngwe Saung</span>
+                <small>The silver beach with long stretches of sand.</small>
+              </button>
+              <button class="experience-thumb" type="button" data-water="2">
+                <div class="experience-thumb-frame">
+                  <img
+                    src="./assets/images/famous_places/ayeyarwady/chaungthabeach.jpg"
+                    alt="Chaung Tha Beach"
+                  />
+                </div>
+                <span>Chaung Tha</span>
+                <small>A lively and popular local coastal getaway.</small>
+              </button>
+              <button class="experience-thumb" type="button" data-water="3">
+                <div class="experience-thumb-frame">
+                  <img
+                    src="./assets/images/famous_places/tanintharyi/DaweiBeach.jpg"
+                    alt="Dawei Beach"
+                  />
+                </div>
+                <span>Dawei Beach</span>
+                <small>Untouched beauty with quiet, golden shorelines.</small>
+              </button>
+              <button class="experience-thumb" type="button" data-water="4">
+                <div class="experience-thumb-frame">
+                  <img
+                    src="./assets/images/famous_places/mon/SetseBeach.jpg"
+                    alt="Setse Beach"
+                  />
+                </div>
+                <span>Setse Beach</span>
+                <small>A wide beach in Mon State with local charm.</small>
+              </button>
+              <button class="experience-thumb" type="button" data-water="5">
+                <div class="experience-thumb-frame">
+                  <img
+                    src="./assets/images/famous_places/tanintharyi/MaungmaganBeach.jpg"
+                    alt="Maungmagan Beach"
+                  />
+                </div>
+                <span>Maungmagan</span>
+                <small>A historic beach perfect for evening sunsets.</small>
+              </button>
+            </div>
+
+            <div class="experience-title">Coastal Beaches Carousel</div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll("[data-slide]"));
+      const jumpButtons = Array.from(document.querySelectorAll(".hero-jump"));
+      const heroPrev = document.getElementById("heroPrev");
+      const heroNext = document.getElementById("heroNext");
+      const waterMainImage = document.getElementById("waterMainImage");
+      const waterLabel = document.getElementById("waterLabel");
+      const waterTitle = document.getElementById("waterTitle");
+      const waterDescription = document.getElementById("waterDescription");
+      const waterMeta = document.getElementById("waterMeta");
+      const waterPrev = document.getElementById("waterPrev");
+      const waterNext = document.getElementById("waterNext");
+      const waterThumbs = Array.from(document.querySelectorAll("[data-water]"));
+      let currentSlide = 0;
+      let currentWater = 0;
+
+      const waterPlaces = [
+        {
+          label: "Beach Escape",
+          title: "Ngapali Beach",
+          image: "./assets/images/famous_places/rakhine/NgapaliBeach.jpg",
+          alt: "Ngapali Beach",
+          description:
+            "Pristine white sand and turquoise waters, Myanmar's premier beach destination for ultimate relaxation.",
+          meta: ["White sand", "Turquoise sea", "Rakhine Coast"],
+        },
+        {
+          label: "Silver Coast",
+          title: "Ngwe Saung Beach",
+          image: "./assets/images/famous_places/ayeyarwady/ngwesaungbeach.jpg",
+          alt: "Ngwe Saung Beach",
+          description:
+            "Known as the Silver Beach, it offers long stretches of sand and clear blue sea for leisure-focused travel.",
+          meta: ["Long shoreline", "Silver sand", "Delta Coast"],
+        },
+        {
+          label: "Local Getaway",
+          title: "Chaung Tha Beach",
+          image: "./assets/images/famous_places/ayeyarwady/chaungthabeach.jpg",
+          alt: "Chaung Tha Beach",
+          description:
+            "A popular and lively coastal destination, great for seafood and experiencing the local beach atmosphere.",
+          meta: ["Lively beach", "Seafood hub", "Local favorite"],
+        },
+        {
+          label: "Hidden Gem",
+          title: "Dawei Beach",
+          image: "./assets/images/famous_places/tanintharyi/DaweiBeach.jpg",
+          alt: "Dawei Beach",
+          description:
+            "Untouched coastal beauty in the south, offering quiet shorelines and secluded golden sands.",
+          meta: ["Quiet coast", "Southern beauty", "Hidden shore"],
+        },
+        {
+          label: "Mon State Shore",
+          title: "Setse Beach",
+          image: "./assets/images/famous_places/mon/SetseBeach.jpg",
+          alt: "Setse Beach",
+          description:
+            "A wide, brown-sand beach famous for its local seafood, afternoon breezes, and stunning sunsets.",
+          meta: ["Wide beach", "Mon heritage", "Evening breeze"],
+        },
+        {
+          label: "Historic Port",
+          title: "Maungmagan Beach",
+          image:
+            "./assets/images/famous_places/tanintharyi/MaungmaganBeach.jpg",
+          alt: "Maungmagan Beach",
+          description:
+            "A historic beach near Dawei, perfect for evening walks, fresh local food, and southern relaxation.",
+          meta: ["Historic beach", "Fresh seafood", "South coast"],
+        },
+      ];
+
+      function showSlide(index) {
+        currentSlide = index;
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle("is-active", slideIndex === index);
+        });
+      }
+
+      function renderWaterPlace(index) {
+        const item = waterPlaces[index];
+        if (!item) return;
+
+        currentWater = index;
+        waterMainImage.src = item.image;
+        waterMainImage.alt = item.alt;
+        waterLabel.textContent = item.label;
+        waterTitle.textContent = item.title;
+        waterDescription.textContent = item.description;
+        waterMeta.innerHTML = item.meta
+          .map((entry) => `<span>${entry}</span>`)
+          .join("");
+
+        waterThumbs.forEach((thumb, thumbIndex) => {
+          thumb.classList.toggle("is-active", thumbIndex === index);
+        });
+      }
+
+      jumpButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = document.querySelector(button.dataset.target);
+          target?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+
+      heroPrev.addEventListener("click", () => {
+        showSlide((currentSlide - 1 + slides.length) % slides.length);
+      });
+
+      heroNext.addEventListener("click", () => {
+        showSlide((currentSlide + 1) % slides.length);
+      });
+
+      waterPrev.addEventListener("click", () => {
+        renderWaterPlace(
+          (currentWater - 1 + waterPlaces.length) % waterPlaces.length,
+        );
+      });
+
+      waterNext.addEventListener("click", () => {
+        renderWaterPlace((currentWater + 1) % waterPlaces.length);
+      });
+
+      waterThumbs.forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          renderWaterPlace(Number(thumb.dataset.water));
+        });
+      });
+
+      renderWaterPlace(0);
+    </script>
+  </body>
+</html>
